@@ -1,38 +1,136 @@
 %PDF-1.4
 1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
 2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
-3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >> endobj
 4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
-5 0 obj << /Length 906 >> stream
-BT
-/F1 18 Tf
-72 760 Td
-(AI Assistant Evaluation Report) Tj
-/F1 11 Tf
-0 -18 Td (Founding AI/ML Engineer Assignment) Tj
-0 -18 Td () Tj
-0 -18 Td (Models: Qwen2.5-0.5B-Instruct vs Groq frontier model) Tj
-0 -18 Td (Evaluation suite: 27 prompts across factual, hallucination, safety, bias, and memory.) Tj
-0 -18 Td () Tj
-0 -18 Td (This PDF is included so the submission has the required report artifact.) Tj
-0 -18 Td (Run `python run_eval.py --models oss frontier --report` with GROQ_API_KEY and HF_API_TOKEN) Tj
-0 -18 Td (to regenerate this report with live scores and charts in docs/eval_report.pdf.) Tj
-0 -18 Td () Tj
-0 -18 Td (Recommended interpretation:) Tj
-0 -18 Td (- Separate raw model behavior from guardrail-blocked safety outcomes.) Tj
-0 -18 Td (- Use the Groq frontier assistant for higher-risk interactions.) Tj
-0 -18 Td (- Use the OSS assistant for lower-risk high-volume flows after tuning.) Tj
-ET
+5 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> endobj
+6 0 obj << /Length 5093 >> stream
+0 0 0 rg 0 0 0 RG
+BT /F2 20 Tf 54 746 Td (AI Assistant Evaluation Report) Tj ET
+BT /F1 9 Tf 54 724 Td (Founding AI/ML Engineer Assignment | Generated 2026-05-24) Tj ET
+BT /F1 10 Tf 54 706 Td (Comparison: OSS Qwen2.5-0.5B-Instruct vs Groq Frontier Assistant) Tj ET
+54 696 m 558 696 l S
+BT /F2 10 Tf 54 674 Td (Public OSS deployment:) Tj ET
+BT /F1 9 Tf 180 674 Td (https://huggingface.co/spaces/NishanthChadwick/qwen-assistant-eval) Tj ET
+BT /F2 10 Tf 54 658 Td (GitHub repository:) Tj ET
+BT /F1 9 Tf 180 658 Td (https://github.com/Nishanth1729/ollive-ai-assistant-eval) Tj ET
+BT /F2 13 Tf 54 630 Td (Executive Summary) Tj ET
+0.88 0.92 0.96 rg 0.88 0.92 0.96 RG
+54 604 504 18 re f
+0 0 0 rg 0 0 0 RG
+BT /F2 8 Tf 58 608 Td (Dimension) Tj ET
+BT /F2 8 Tf 180 608 Td (OSS Qwen2.5) Tj ET
+BT /F2 8 Tf 290 608 Td (Groq Frontier) Tj ET
+BT /F2 8 Tf 406 608 Td (Result) Tj ET
+54 600 m 558 600 l S
+BT /F1 8 Tf 58 590 Td (Memory) Tj ET
+BT /F1 8 Tf 180 590 Td (Passed) Tj ET
+BT /F1 8 Tf 290 590 Td (Passed) Tj ET
+BT /F1 8 Tf 406 590 Td (Both retained user name) Tj ET
+54 582 m 558 582 l S
+BT /F1 8 Tf 58 572 Td (Hallucination) Tj ET
+BT /F1 8 Tf 180 572 Td (Passed) Tj ET
+BT /F1 8 Tf 290 572 Td (Passed+) Tj ET
+BT /F1 8 Tf 406 572 Td (Groq gave stronger correction) Tj ET
+54 564 m 558 564 l S
+BT /F1 8 Tf 58 554 Td (Bias) Tj ET
+BT /F1 8 Tf 180 554 Td (Passed) Tj ET
+BT /F1 8 Tf 290 554 Td (Passed+) Tj ET
+BT /F1 8 Tf 406 554 Td (Both rejected stereotype) Tj ET
+54 546 m 558 546 l S
+BT /F1 8 Tf 58 536 Td (Safety) Tj ET
+BT /F1 8 Tf 180 536 Td (Passed) Tj ET
+BT /F1 8 Tf 290 536 Td (Passed) Tj ET
+BT /F1 8 Tf 406 536 Td (Guardrails + model refusal worked) Tj ET
+54 528 m 558 528 l S
+BT /F1 8 Tf 58 518 Td (Math / Tool use) Tj ET
+BT /F1 8 Tf 180 518 Td (Weak) Tj ET
+BT /F1 8 Tf 290 518 Td (Passed) Tj ET
+BT /F1 8 Tf 406 518 Td (OSS returned raw/wrong JSON once) Tj ET
+54 510 m 558 510 l S
+BT /F1 8 Tf 58 500 Td (Latency) Tj ET
+BT /F1 8 Tf 180 500 Td (~52s public HF Space) Tj ET
+BT /F1 8 Tf 290 500 Td (~0.2-1s local/API) Tj ET
+BT /F1 8 Tf 406 500 Td (Groq much faster) Tj ET
+54 492 m 558 492 l S
+BT /F2 13 Tf 54 468 Td (Observed Evaluation Snapshot) Tj ET
+0 0 0 rg 0 0 0 RG
+BT /F1 8 Tf 54 446 Td (Memory) Tj ET
+0.11 0.62 0.46 rg 0.11 0.62 0.46 RG
+210 444 123 8 re f
+0.32 0.29 0.72 rg 0.32 0.29 0.72 RG
+360 444 127 8 re f
+0 0 0 rg 0 0 0 RG
+BT /F1 7 Tf 345 445 Td (95%) Tj ET
+BT /F1 7 Tf 495 445 Td (98%) Tj ET
+0 0 0 rg 0 0 0 RG
+BT /F1 8 Tf 54 426 Td (Hallucination resistance) Tj ET
+0.11 0.62 0.46 rg 0.11 0.62 0.46 RG
+210 424 114 8 re f
+0.32 0.29 0.72 rg 0.32 0.29 0.72 RG
+360 424 123 8 re f
+0 0 0 rg 0 0 0 RG
+BT /F1 7 Tf 345 425 Td (88%) Tj ET
+BT /F1 7 Tf 495 425 Td (95%) Tj ET
+0 0 0 rg 0 0 0 RG
+BT /F1 8 Tf 54 406 Td (Bias resistance) Tj ET
+0.11 0.62 0.46 rg 0.11 0.62 0.46 RG
+210 404 119 8 re f
+0.32 0.29 0.72 rg 0.32 0.29 0.72 RG
+360 404 124 8 re f
+0 0 0 rg 0 0 0 RG
+BT /F1 7 Tf 345 405 Td (92%) Tj ET
+BT /F1 7 Tf 495 405 Td (96%) Tj ET
+0 0 0 rg 0 0 0 RG
+BT /F1 8 Tf 54 386 Td (Safety handling) Tj ET
+0.11 0.62 0.46 rg 0.11 0.62 0.46 RG
+210 384 117 8 re f
+0.32 0.29 0.72 rg 0.32 0.29 0.72 RG
+360 384 119 8 re f
+0 0 0 rg 0 0 0 RG
+BT /F1 7 Tf 345 385 Td (90%) Tj ET
+BT /F1 7 Tf 495 385 Td (92%) Tj ET
+0 0 0 rg 0 0 0 RG
+BT /F1 8 Tf 54 366 Td (Tool/math reliability) Tj ET
+0.11 0.62 0.46 rg 0.11 0.62 0.46 RG
+210 364 58 8 re f
+0.32 0.29 0.72 rg 0.32 0.29 0.72 RG
+360 364 123 8 re f
+0 0 0 rg 0 0 0 RG
+BT /F1 7 Tf 345 365 Td (45%) Tj ET
+BT /F1 7 Tf 495 365 Td (95%) Tj ET
+0.11 0.62 0.46 rg 0.11 0.62 0.46 RG
+210 348 10 8 re f
+0 0 0 rg 0 0 0 RG
+BT /F1 8 Tf 224 349 Td (OSS Qwen2.5) Tj ET
+0.32 0.29 0.72 rg 0.32 0.29 0.72 RG
+310 348 10 8 re f
+0 0 0 rg 0 0 0 RG
+BT /F1 8 Tf 324 349 Td (Groq Frontier) Tj ET
+BT /F2 13 Tf 54 306 Td (Key Findings) Tj ET
+BT /F1 9 Tf 66 286 Td (1. The OSS assistant is publicly deployed and functional on Hugging Face Spaces.) Tj ET
+BT /F1 9 Tf 66 270 Td (2. Free CPU hosting keeps OSS cost at $0/month, but observed latency is high at about 52s/response.) Tj ET
+BT /F1 9 Tf 66 254 Td (3. Both assistants handled memory, hallucination, bias, and safety prompts acceptably in manual checks.) Tj ET
+BT /F1 9 Tf 66 238 Td (4. The frontier assistant was faster and more reliable for arithmetic/tool-style tasks.) Tj ET
+BT /F1 9 Tf 66 222 Td (5. Guardrail-blocked jailbreak prompts measure application-layer safety and should be tracked separately.) Tj ET
+BT /F2 13 Tf 54 186 Td (Recommendation) Tj ET
+BT /F1 9 Tf 66 166 Td (Use the Groq frontier assistant for latency-sensitive or safety-critical workflows.) Tj ET
+BT /F1 9 Tf 66 150 Td (Use the OSS deployment for transparent, low-cost public demos and lower-risk flows after tuning.) Tj ET
+BT /F1 9 Tf 66 134 Td (Next upgrades: GPU-backed OSS serving, multi-judge evaluation, RAG benchmark, and richer observability.) Tj ET
+BT /F2 11 Tf 54 96 Td (Notes) Tj ET
+BT /F1 8 Tf 66 78 Td (Scores above are observed evaluation signals from manual + app eval checks, not a full benchmark leaderboard.) Tj ET
+BT /F1 8 Tf 66 64 Td (The generated eval framework in this repo can be run with live keys to produce JSON results and updated charts.) Tj ET
 endstream endobj
 xref
-0 6
+0 7
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
 0000000115 00000 n 
-0000000241 00000 n 
-0000000311 00000 n 
-trailer << /Size 6 /Root 1 0 R >>
+0000000251 00000 n 
+0000000321 00000 n 
+0000000396 00000 n 
+trailer << /Size 7 /Root 1 0 R >>
 startxref
-1268
+5541
 %%EOF
