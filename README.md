@@ -27,28 +27,28 @@ Founding AI/ML Engineer assignment: a side-by-side comparison of an open-source 
 
 ```text
 ollive-ai-assistant-eval/
-├── app.py
-├── run_eval.py
-├── requirements.txt
-├── .env.example
-├── oss_assistant/
-│   ├── assistant.py
-│   ├── hf_space_app.py
-│   └── HF_SPACE_README.md
-├── frontier_assistant/
-│   └── assistant.py
-├── evaluation/
-│   ├── evaluator.py
-│   └── report.py
-├── utils/
-│   ├── memory.py
-│   ├── guardrails.py
-│   └── observability.py
-├── data/
-│   ├── prompts/eval_suite.json
-│   └── results/
-└── docs/
-    └── eval_report.pdf
+|-- app.py
+|-- run_eval.py
+|-- requirements.txt
+|-- .env.example
+|-- oss_assistant/
+|   |-- assistant.py
+|   |-- hf_space_app.py
+|   `-- HF_SPACE_README.md
+|-- frontier_assistant/
+|   `-- assistant.py
+|-- evaluation/
+|   |-- evaluator.py
+|   `-- report.py
+|-- utils/
+|   |-- memory.py
+|   |-- guardrails.py
+|   `-- observability.py
+|-- data/
+|   |-- prompts/eval_suite.json
+|   `-- results/
+`-- docs/
+    `-- eval_report.pdf
 ```
 
 ## Setup
