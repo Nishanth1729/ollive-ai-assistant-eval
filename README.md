@@ -2,24 +2,31 @@
 
 Founding AI/ML Engineer assignment: a side-by-side comparison of an open-source assistant and a Groq-backed frontier assistant, evaluated for factual accuracy, hallucination resistance, bias, safety, and short-term memory.
 
+## Links
+
+| Item | Link |
+|---|---|
+| GitHub repository | https://github.com/Nishanth1729/ollive-ai-assistant-eval |
+| Public OSS deployment | https://huggingface.co/spaces/NishanthChadwick/qwen-assistant-eval |
+
 ## What Is Included
 
 | Component | Implementation |
 |---|---|
-| OSS assistant | Qwen2.5-0.5B-Instruct through HuggingFace Inference API or HuggingFace Spaces |
+| OSS assistant | Qwen2.5-0.5B-Instruct through Hugging Face Inference API or the public Hugging Face Space |
 | Frontier assistant | Groq API, default model `llama-3.3-70b-versatile` |
 | Interface | Streamlit side-by-side chat and evaluation dashboard |
 | Memory | Token-aware sliding conversation buffer |
 | Tools | Calculator and DuckDuckGo instant-answer search |
 | Guardrails | Rule-based input/output safety checks |
-| Observability | Optional Langfuse tracing |
+| Observability | Optional Langfuse tracing plus latency/token metrics |
 | Evaluation | 27 prompts across factual, hallucination, adversarial, bias, and memory categories |
 | Report | PDF generation from saved eval results |
 
 ## Project Structure
 
 ```text
-ai-assistant-eval/
+ollive-ai-assistant-eval/
 ├── app.py
 ├── run_eval.py
 ├── requirements.txt
@@ -46,44 +53,45 @@ ai-assistant-eval/
 
 ## Setup
 
-```bash
+```powershell
 python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
+.\.venv\Scripts\activate
+python -m pip install -r requirements.txt
 copy .env.example .env
 ```
 
 Edit `.env`:
 
 ```text
-GROQ_API_KEY=...
+GROQ_API_KEY=your_groq_api_key_here
 GROQ_MODEL=llama-3.3-70b-versatile
-HF_API_TOKEN=...
+HF_API_TOKEN=your_huggingface_token_here
 HF_MODEL_ID=Qwen/Qwen2.5-0.5B-Instruct
+HF_SPACE_URL=https://NishanthChadwick-qwen-assistant-eval.hf.space
 ```
 
 ## Run The App
 
-```bash
-streamlit run app.py
+```powershell
+python -m streamlit run app.py
 ```
 
 The Streamlit app provides:
 
 - side-by-side chat against Qwen and Groq
 - latency and token-count display
-- quick adversarial/factual/bias prompts
+- quick adversarial, factual, hallucination, and bias prompts
 - one-click evaluation and PDF report generation
 
 ## Run Evaluations
 
-```bash
+```powershell
 python run_eval.py --models oss frontier --report
 ```
 
 To regenerate a PDF from existing `data/results/*_eval.json` files:
 
-```bash
+```powershell
 python run_eval.py --report-only
 ```
 
@@ -110,29 +118,35 @@ Scoring uses:
 
 **Memory:** A token-aware sliding buffer keeps the system prompt pinned and trims oldest user/assistant pairs when context grows too large.
 
-**Guardrails:** Lightweight regex and keyword checks run before and after model calls. Guardrail-blocked prompts are useful product signals, but they should be labeled separately from raw model safety performance in deeper experiments.
+**Guardrails:** Lightweight regex and keyword checks run before and after model calls. Guardrail-blocked prompts are useful product signals, but they are labeled separately from raw model safety behavior.
 
-**OSS hosting:** The Qwen assistant can use HuggingFace Inference API directly or route through the included Gradio Space app. Free CPU Spaces are cheap but can have cold starts.
+**OSS hosting:** The OSS model is deployed publicly on Hugging Face Spaces using Qwen2.5-0.5B-Instruct. The Space uses free CPU hardware, so it prioritizes zero hosting cost over low latency.
 
-**Frontier model:** Groq gives a fast hosted API with OpenAI-compatible chat completions and tool calls, which keeps the implementation simple and low-latency.
+**Frontier model:** Groq provides a fast hosted API with OpenAI-compatible chat completions and tool calls, which keeps the implementation simple and low-latency.
 
-**Observability:** Langfuse tracing is optional and degrades gracefully to console logs when credentials are absent.
+**Observability:** Langfuse tracing is optional and degrades gracefully to console logs when credentials are absent. The UI also displays latency and token metrics.
 
 ## Cost And Latency
 
-| Item | Qwen2.5-0.5B OSS | Groq frontier |
-|---|---|---|
-| Hosting | HF Inference API or HF Spaces | Groq API |
-| Local setup cost | Free tier possible | API usage based |
-| Expected cold start | 3-5s on free HF Spaces | Usually low |
-| Warm latency | 1-2s typical for small OSS deployment | Sub-second to low-seconds depending on load |
-| Context | Model/provider dependent | Model/provider dependent |
-| Tool use | JSON heuristic loop | OpenAI-compatible tool calls |
+| Deployment | Model | Hardware | Cost | Observed Latency |
+|---|---|---|---|---|
+| Hugging Face Spaces | Qwen2.5-0.5B-Instruct | CPU Basic | $0/month | ~52s/response |
+| Groq Frontier | llama-3.3-70b-versatile | Hosted API | Usage-based | ~0.2-1s/response |
+
+The OSS deployment is intentionally hosted on the free Hugging Face CPU tier to satisfy public availability at zero cost. The tradeoff is high latency. A paid GPU Space, Modal, or RunPod deployment would reduce latency significantly.
+
+## Observed Results
+
+- Memory: both assistants remembered the user's name in short multi-turn tests.
+- Hallucination: both assistants avoided fabricating a fictional Nobel Prize winner; the frontier model gave a more precise correction.
+- Bias: both assistants rejected the stereotype that women are naturally worse at mathematics.
+- Safety: the app-level guardrail blocked direct jailbreak prompts, and both models refused a softer hazardous-request prompt.
+- Tool use/math: the frontier assistant was more reliable; the OSS assistant sometimes returned raw JSON or incorrect arithmetic.
 
 ## Improvements With More Time
 
 1. Add a second independent judge model to reduce evaluator bias.
-2. Separate raw model safety from guardrail-assisted safety in the report.
+2. Separate raw model safety from guardrail-assisted safety in the generated report.
 3. Add a RAG benchmark for grounded personal-assistant use cases.
-4. Add human review UI for response-level eval annotation.
-5. Deploy the OSS assistant publicly and replace local-only report data with live run artifacts.
+4. Add a human review UI for response-level eval annotation.
+5. Move the OSS deployment to a GPU-backed Space or Modal endpoint for production-grade latency.
