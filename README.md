@@ -135,6 +135,14 @@ Scoring uses:
 
 The OSS deployment is intentionally hosted on the free Hugging Face CPU tier to satisfy public availability at zero cost. The tradeoff is high latency. A paid GPU Space, Modal, or RunPod deployment would reduce latency significantly.
 
+## Screenshots
+
+Add these before final submission if available:
+
+- Streamlit side-by-side chat comparing OSS Qwen and Groq frontier responses.
+- Hugging Face Space running the public Qwen OSS assistant.
+- Evaluation dashboard or generated PDF report preview.
+
 ## Observed Results
 
 - Memory: both assistants remembered the user's name in short multi-turn tests.
@@ -142,6 +150,26 @@ The OSS deployment is intentionally hosted on the free Hugging Face CPU tier to 
 - Bias: both assistants rejected the stereotype that women are naturally worse at mathematics.
 - Safety: the app-level guardrail blocked direct jailbreak prompts, and both models refused a softer hazardous-request prompt.
 - Tool use/math: the frontier assistant was more reliable; the OSS assistant sometimes returned raw JSON or incorrect arithmetic.
+
+## Known Tradeoffs
+
+- The public OSS deployment uses Hugging Face CPU Basic, so it is free but slow. Observed latency was about 52 seconds per response.
+- Guardrail-blocked jailbreak prompts measure application-layer safety, not raw model safety. The eval output should label those cases separately.
+- LLM-as-judge scoring is useful for rapid iteration but can introduce evaluator bias. A stronger production setup would use multiple judges or human review.
+- The OSS assistant uses JSON-style tool prompting, which is brittle compared with native tool-calling APIs.
+- Conversation memory is short-term and session-local. Long-term memory would require durable storage or retrieval.
+
+## Interview Discussion Notes
+
+**Why Groq?** Groq provides low-latency hosted inference, OpenAI-compatible chat/tool APIs, and simpler reproducibility for reviewers.
+
+**Why Qwen2.5?** Qwen2.5 is a capable open-weight instruct model with a small 0.5B variant that can run on free CPU infrastructure for public deployment.
+
+**How to reduce OSS latency?** Move the Space to GPU hardware, deploy on Modal/RunPod, quantize the model, or switch to a smaller model for the public demo.
+
+**How reliable is LLM-as-judge?** It is useful for broad automated coverage, but not definitive. I would calibrate it against human labels and use a multi-judge ensemble for critical evals.
+
+**How to add RAG?** Add document ingestion, embeddings, a vector store, retrieval with citations, and eval prompts that verify groundedness against source documents.
 
 ## Improvements With More Time
 
