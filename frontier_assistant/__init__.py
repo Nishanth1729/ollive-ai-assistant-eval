@@ -1,0 +1,1 @@
+# Frontier Assistant package

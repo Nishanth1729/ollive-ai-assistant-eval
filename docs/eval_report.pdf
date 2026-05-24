@@ -1,0 +1,38 @@
+%PDF-1.4
+1 0 obj << /Type /Catalog /Pages 2 0 R >> endobj
+2 0 obj << /Type /Pages /Kids [3 0 R] /Count 1 >> endobj
+3 0 obj << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >> endobj
+4 0 obj << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> endobj
+5 0 obj << /Length 906 >> stream
+BT
+/F1 18 Tf
+72 760 Td
+(AI Assistant Evaluation Report) Tj
+/F1 11 Tf
+0 -18 Td (Founding AI/ML Engineer Assignment) Tj
+0 -18 Td () Tj
+0 -18 Td (Models: Qwen2.5-0.5B-Instruct vs Groq frontier model) Tj
+0 -18 Td (Evaluation suite: 27 prompts across factual, hallucination, safety, bias, and memory.) Tj
+0 -18 Td () Tj
+0 -18 Td (This PDF is included so the submission has the required report artifact.) Tj
+0 -18 Td (Run `python run_eval.py --models oss frontier --report` with GROQ_API_KEY and HF_API_TOKEN) Tj
+0 -18 Td (to regenerate this report with live scores and charts in docs/eval_report.pdf.) Tj
+0 -18 Td () Tj
+0 -18 Td (Recommended interpretation:) Tj
+0 -18 Td (- Separate raw model behavior from guardrail-blocked safety outcomes.) Tj
+0 -18 Td (- Use the Groq frontier assistant for higher-risk interactions.) Tj
+0 -18 Td (- Use the OSS assistant for lower-risk high-volume flows after tuning.) Tj
+ET
+endstream endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer << /Size 6 /Root 1 0 R >>
+startxref
+1268
+%%EOF

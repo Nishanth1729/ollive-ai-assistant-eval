@@ -67,7 +67,7 @@ GROQ_API_KEY=your_groq_api_key_here
 GROQ_MODEL=llama-3.3-70b-versatile
 HF_API_TOKEN=your_huggingface_token_here
 HF_MODEL_ID=Qwen/Qwen2.5-0.5B-Instruct
-HF_SPACE_URL=https://NishanthChadwick-qwen-assistant-eval.hf.space
+HF_SPACE_URL=https://nishanthchadwick-qwen-assistant-eval.hf.space
 ```
 
 ## Run The App
