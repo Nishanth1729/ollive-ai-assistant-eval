@@ -135,14 +135,6 @@ Scoring uses:
 
 The OSS deployment is intentionally hosted on the free Hugging Face CPU tier to satisfy public availability at zero cost. The tradeoff is high latency. A paid GPU Space, Modal, or RunPod deployment would reduce latency significantly.
 
-## Screenshots
-
-Add these before final submission if available:
-
-- Streamlit side-by-side chat comparing OSS Qwen and Groq frontier responses.
-- Hugging Face Space running the public Qwen OSS assistant.
-- Evaluation dashboard or generated PDF report preview.
-
 ## Observed Results
 
 - Memory: both assistants remembered the user's name in short multi-turn tests.
